@@ -86,7 +86,7 @@
     }
 ```
 
-##### 3.1.3 继承闪屏的Activity
+##### 3.1.3. 继承闪屏的Activity
 游戏需要创建一个Activity来继承中间件提供的FlashActivity，并把该Activity作为游戏的入口，重写FlashActivity的onsplashStop()方法,并在该方法中跳转到游戏的主Activity。 接入的示例代码：
 ```java
     /***** 调用示例 *****/
@@ -132,7 +132,7 @@
     }
 ```
 
-##### 4. 登录接口
+##### 3.1.5. 登录接口
 帐号登录
 ```java
     /***** 调用示例 *****/
@@ -180,10 +180,10 @@
         public void login(Response<String> response);
     }
 ```
-##### 3.1.16. 提交玩家游戏相关信息
+##### 3.1.6. 提交玩家游戏相关信息
 在游戏玩家第一次进入游戏创建完成游戏角色时，CP需要提交游戏玩家相关信息。以后在游戏玩家登录完成时，CP都需要提交游戏玩家相关信息（玩家第一次注册登录，尚未创建游戏角色时不用提交）。示例：
 ```java
-PlayerInfo userExtraData = new PlayerInfo ();
+    PlayerInfo userExtraData = new PlayerInfo ();
     YW.getInstance().subPlayerInfo (userExtraData, new Response<String>() {
             @Override
             public void onFailure(String arg0) {
@@ -202,7 +202,7 @@ CP可在相应的回调方法中拿到信息提交是否成功的结果，处理
 
 PlayerInfo封装的参数：
 ```java
-   public static final int TYPE_SELECT_SERVER = 1;     //选择服务器   
+    public static final int TYPE_SELECT_SERVER = 1;     //选择服务器   
     public static final int TYPE_CREATE_ROLE = 2;       //创建角色  
     public static final int TYPE_ENTER_GAME = 3;        //进入游戏  
     public static final int TYPE_LEVEL_UP = 4;          //等级提升  
@@ -218,7 +218,7 @@ PlayerInfo封装的参数：
     private String viplevel         //玩家的VIP等级   选填
 ```
 
-##### 5. 支付接口
+##### 3.1.7. 支付接口
 支付
 ```java
     /***** 调用示例 *****/
@@ -315,7 +315,7 @@ PlayerInfo封装的参数：
 ```
 CP可在回调成功或失败的方法中处理自己的逻辑
 
-##### 6. 登出接口
+##### 3.1.10. 登出接口
 帐号登出
 ```java
     /***** 调用示例 *****/
@@ -371,7 +371,7 @@ CP可在回调成功或失败的方法中处理自己的逻辑
 工作流程中，跟CP相关的有两个HTTP接口：①登录验证接口、②支付通知接口。   
 具体的说明及接口定义见下述描述。
 
-##### 1. HTTP请求参数签名
+##### 3.2.1. HTTP请求参数签名
 为验证请求的合法性，引入参数签名机制。参数签名的步骤如下：
 1. 对查询参数对（URL中“?”后的名值对（name-value）进行字典排序，数字由小到大，字母按字母表顺序；
 2. 非ASCII的查询参数值进行UTF-8 UrlEncode；
@@ -398,7 +398,7 @@ AppKey为4d6121503e6c2c8157c98796cc4f598e
   5. 最后的结果：gender=male&id=666666&mail=support@yuwan8.com&name=%e9%b1%bc%e4%b8%b8&sign=fd2d8dcd085111afc789c8da22e2659c （<span style="color:red;">注：没有appkey</span>）
 
 
-##### 2. 登录验证接口
+##### 3.2.2. 登录验证接口
 
 * 请求方 => 响应方：游戏服务器 => 鱼丸中间件服务器
 * 请求地址：http://api.yuwan8.com/1.0/pay/user/profile
@@ -440,7 +440,7 @@ curl -X GET 'http://api.yuwan8.com/1.0/pay/user/profile?appid=13421341&token=17b
 }
 ```
 
-##### 3 支付通知接口
+##### 3.2.3 支付通知接口
 
 * 请求方 => 响应方：鱼丸中间件服务器 => 游戏服务器
 * 请求地址：CP提供
