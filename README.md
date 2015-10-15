@@ -495,5 +495,5 @@ FAILURE
 [quick-import]:image/quick-import.png  "快速接入"
 [login-import]:image/login.png  "登录流程"
 [pay-import]:image/pay.png  "支付流程"
-[lib-download]:lib/
+[lib-download]:lib/yw-middle_1.1.0.jar
 
