@@ -10,14 +10,14 @@
 
 <h2 id="1">一.快速接入</h2>
 * 只需5步，快速完成接入 
-![快速接入流程](quick-import)
+![快速接入流程][quick-import]
 
 <h2 id="2">二.工作流程</h2>
 * 登录工作流程
-![登录工作流程](login-import)
+![登录工作流程][login-import]
 
 * 支付工作流程
-![登录工作流程](pay-import)
+![登录工作流程][pay-import]
 
 <h2 id="3">三.接入指南</h2>
 
