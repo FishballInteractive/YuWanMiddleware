@@ -1,12 +1,26 @@
 # YuWanMiddlewar(Android)接入文档
 
-### [快速接入]()
-### [工作流程]()
-### [接入指南]()
-#### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Android接入]()
-#### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[服务端接入]()
-### [资源下载]()
-### [常见问题]（)
+### [快速接入](#1)
+### [工作流程](#2)
+### [接入指南](#3)
+#### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[客户端接入](#3.1)
+#### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[服务端接入](#3.2)
+### [资源下载](#4)
+### [常见问题](#5)
+
+<h2 id="1">一.快速接入</h2>
+* 只需5步，快速完成接入 
+  ![快速接入流程][quick-import]
+
+<h2 id="2">二.工作流程</h2>
+* 登录工作流程
+  ![登录工作流程][login-import]
+* 支付工作流程
+  ![登录工作流程][pay-import]
+
+<h2 id="3">三.接入指南</h2>
+
+<h4 id="3.1">3.1. 客户端接入</h4> 
 
 ##### 1. 导入鱼丸中间件Jar包
   * 在[“资源下载”][resource-download]中下载最新的鱼丸中间件Jar包
@@ -242,6 +256,12 @@
 ```java
 -keep class com.yuwan8.middleware.** {*;}
 ```
+
+<h2 id="4">四.资源下载</h1>
+* [点击下载][]接入所需资源
+
+<h2 id="5">五.常见问题</h2> 
+* 未收集到接入时的常见问题。如果您在接入时遇到了问题，欢迎您随时向我们咨询及反馈。
 
 [resource-download]: ../04.resource/00.download.md
 [android-studio]: http://www.cnblogs.com/neozhu/p/3458759.html
