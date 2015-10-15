@@ -493,8 +493,8 @@ FAILURE
 [resource-download]: ../04.resource/00.download.md
 [android-studio]: http://www.cnblogs.com/neozhu/p/3458759.html
 [eclipse]: http://jingyan.baidu.com/article/466506580baf2ef549e5f8e8.html
+[quick-import]: ../01.quick-import/00.quick-import/quick-import.png  "快速接入"
+[login-import]: ../02.workflow/00.abstract/login.png  "登录流程"
+[pay-import]: ../02.workflow/00.abstract/pay.png  "支付流程"
 [workflow]: ../02.workflow/00.abstract.md
-[quick-import]: ../01.quick-import/00.quick-import/quick-import.png "快速接入"
-[login-import]: ../02.workflow/00.abstract/login.png "登录流程"
-[pay-import]: ../02.workflow/00.abstract/pay.png "支付流程"
 
