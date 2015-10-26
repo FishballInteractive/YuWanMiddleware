@@ -23,7 +23,7 @@
 <h4 id="3.1">3.1. 客户端接入</h4> 
 
 ##### 3.1.1. 导入鱼丸中间件Jar包
-  * 在[“资源下载”][resource-download]中下载最新的鱼丸中间件Jar包
+  * 在[“资源下载”][lib-download]中下载最新的鱼丸中间件Jar包
   * 在IDE中导入Jar包。各IDE导入Jar包请点击如下连接
     * [Android Studio][android-studio]
     * [Eclipse][eclipse]
@@ -484,7 +484,7 @@ FAILURE
 游戏服务器处理订单成功则直接返回SUCCESS，否则返回FAILURE。如果游戏服务器未返回SUCCESS，鱼丸SDK平台会在1分钟、10分钟、30分钟尝试重新通知。
 
 <h2 id="4">四.资源下载</h2>
-* 点击下载接入所需资源
+* [点击下载][lib-download]接入所需资源
 
 <h2 id="5">五.常见问题</h2> 
 * 未收集到接入时的常见问题。如果您在接入时遇到了问题，欢迎您随时向我们咨询及反馈。
@@ -492,8 +492,8 @@ FAILURE
 [resource-download]: ../04.resource/00.download.md
 [android-studio]: http://www.cnblogs.com/neozhu/p/3458759.html
 [eclipse]: http://jingyan.baidu.com/article/466506580baf2ef549e5f8e8.html
-[quick-import]:01.quick-import/00.quick-import/quick-import.png  "快速接入"
-[login-import]:02.workflow/00.abstract/login.png  "登录流程"
-[pay-import]:02.workflow/00.abstract/pay.png  "支付流程"
-[workflow]:../02.workflow/00.abstract.md
+[quick-import]:image/quick-import.png  "快速接入"
+[login-import]:image/login.png  "登录流程"
+[pay-import]:image/pay.png  "支付流程"
+[lib-download]:lib/
 
