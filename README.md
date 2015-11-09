@@ -125,7 +125,7 @@
          * 初始化中间件
          *
          * @param context 上下文
-         * @param appKey 申请的appsecret
+         * @param appKey 申请的appKey
          */
         public void init(Context context, String appKey);
     }
