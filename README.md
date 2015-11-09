@@ -374,9 +374,9 @@ CP可在回调成功或失败的方法中处理自己的逻辑
 为验证请求的合法性，引入参数签名机制。参数签名的步骤如下：
 1. 对查询参数对（URL中“?”后的名值对（name-value）进行字典排序，数字由小到大，字母按字母表顺序；
 2. 非ASCII的查询参数值进行UTF-8 UrlEncode；
-3. 排序好的查询参数对以“&”拼接。最后拼接appkey，即拼接“&appkey=d1f5458832fc283249a27aaaa65dbeaa”（实际采用申请的appkey）；
+3. 排序好的查询参数对以“&”拼接。最后拼接appsecret，即拼接“&appsecret=d1f5458832fc283249a27aaaa65dbeaa”（实际采用申请的appkey）；
 4. 将拼接结果进行MD5加密；
-5. 将MD5加密结果作为1个查询参数拼接到<span style="color:red;">未拼接appkey</span>的串后面，即拼接“&sign=33e78d60bc1f9dcc7291c891e6f069e4”。
+5. 将MD5加密结果作为1个查询参数拼接到<span style="color:red;">未拼接appsecret</span>的串后面，即拼接“&sign=33e78d60bc1f9dcc7291c891e6f069e4”。
 6. 示例如下：
 
 例如：发送1个GET请求，该请求需要携带如下参数：
@@ -386,7 +386,7 @@ CP可在回调成功或失败的方法中处理自己的逻辑
   3. gender=male
   4. mail=support@yuwan8.com
 
-AppKey为4d6121503e6c2c8157c98796cc4f598e
+appsecret为4d6121503e6c2c8157c98796cc4f598e
 
 添加签名的基本步骤如下：
 
@@ -413,7 +413,7 @@ AppKey为4d6121503e6c2c8157c98796cc4f598e
 * 请求示例
 
 <div style="background:#F7F7F7;padding:15px">
-假定appkey=4d6121503e6c2c8157c98796cc4f598e<br><br>
+假定appsecret=4d6121503e6c2c8157c98796cc4f598e<br><br>
 
 curl -X GET 'http://api.yuwan8.com/1.0/pay/user/profile?appid=13421341&token=17b98e854de15b1bd613571f43aa9a85&sign=35c70fb65838eaba29b4bd3a1348f763'
 </div>
@@ -463,7 +463,7 @@ curl -X GET 'http://api.yuwan8.com/1.0/pay/user/profile?appid=13421341&token=17b
 * 请求示例
 
 <div style="background:#F7F7F7;padding:15px">
-假定appkey=4d6121503e6c2c8157c98796cc4f598e<br>
+假定appsecret=4d6121503e6c2c8157c98796cc4f598e<br>
 假定CP的请求地址是：http://cp.com/pay/nodify<br><br>
 
 curl -X GET 'http://cp.com/pay/nodify?appid=13421341&order_id=1370481703&cp_order_id=1948312434&uid=134124312&real_fee=200&trade_name=stone&product_count=1&pay_time=1440665340&attach=2af34&result=SUCCESS&sign=abb1d204741e93d376b0f17c6f0b5af5'
