@@ -112,7 +112,7 @@
             super.onCreate(savedInstanceState);
             setContentView(R.layout.acitvity_main);
 
-            String appKey = ...  // appKey向“鱼丸”申请。为保证安全，建议将appKey存到游戏服务器
+            String appKey = ...  // appsecret向“鱼丸”申请。为保证安全，建议将appKey存到游戏服务器
             YW.getInstance().init(this, appKey); // 调用处
         }
     }
@@ -125,7 +125,7 @@
          * 初始化中间件
          *
          * @param context 上下文
-         * @param appKey 申请的appKey
+         * @param appKey 申请的appsecret
          */
         public void init(Context context, String appKey);
     }
@@ -374,7 +374,7 @@ CP可在回调成功或失败的方法中处理自己的逻辑
 为验证请求的合法性，引入参数签名机制。参数签名的步骤如下：
 1. 对查询参数对（URL中“?”后的名值对（name-value）进行字典排序，数字由小到大，字母按字母表顺序；
 2. 非ASCII的查询参数值进行UTF-8 UrlEncode；
-3. 排序好的查询参数对以“&”拼接。最后拼接appsecret，即拼接“&appsecret=d1f5458832fc283249a27aaaa65dbeaa”（实际采用申请的appkey）；
+3. 排序好的查询参数对以“&”拼接。最后拼接appsecret，即拼接“&appsecret=d1f5458832fc283249a27aaaa65dbeaa”（实际采用申请的appsecret）；
 4. 将拼接结果进行MD5加密；
 5. 将MD5加密结果作为1个查询参数拼接到<span style="color:red;">未拼接appsecret</span>的串后面，即拼接“&sign=33e78d60bc1f9dcc7291c891e6f069e4”。
 6. 示例如下：
@@ -392,9 +392,9 @@ appsecret为4d6121503e6c2c8157c98796cc4f598e
 
   1. 对查询参数对排序，结果为：gender=male、id=666666、mail=support@yuwan8.com、name=鱼丸；
   2. UTF-8 UrlEncode：name=%e9%b1%bc%e4%b8%b8（注意：空格“ ”编码为“%20”，而不是“+”）；
-  3. 拼接：gender=male&id=666666&mail=support@yuwan8.com&name=%e9%b1%bc%e4%b8%b8&appkey=4d6121503e6c2c8157c98796cc4f598e；
+  3. 拼接：gender=male&id=666666&mail=support@yuwan8.com&name=%e9%b1%bc%e4%b8%b8&appsecret=4d6121503e6c2c8157c98796cc4f598e；
   4. MD5加密：sign=fd2d8dcd085111afc789c8da22e2659c；
-  5. 最后的结果：gender=male&id=666666&mail=support@yuwan8.com&name=%e9%b1%bc%e4%b8%b8&sign=fd2d8dcd085111afc789c8da22e2659c （<span style="color:red;">注：没有appkey</span>）
+  5. 最后的结果：gender=male&id=666666&mail=support@yuwan8.com&name=%e9%b1%bc%e4%b8%b8&sign=fd2d8dcd085111afc789c8da22e2659c （<span style="color:red;">注：没有appsecret</span>）
 
 
 ##### 3.2.2. 登录验证接口
