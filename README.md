@@ -89,35 +89,37 @@
 游戏需要创建一个Activity来继承中间件提供的FlashActivity，并把该Activity作为游戏的入口，重写FlashActivity的onsplashStop()方法,并在该方法中跳转到游戏的主Activity。 接入的示例代码：
 ```java
     /***** 调用示例 *****/
+    注：需要把下面onCreate中的代码复制到继承闪屏的Activity的onCreate方法中，且该Activity为游戏的LaunchActivity（游戏入口）。
     public class SplashActivity extends FlashActivity {
        private boolean flag = true;
        @Override
        protected void onCreate(Bundle savedInstanceState) {
-		       super.onCreate(savedInstanceState);
-		       Intent intent = this.getIntent();
-		       Set<String> set = intent.getCategories();
-		       if(set == null){
-			        finish();
-		        	return;
-		       }
+        //注：需要把该方法中的代码复制到游戏继承闪屏的Activity的onCreate方法中，且该Activity为游戏的LaunchActivity（游戏入口）。
+	     super.onCreate(savedInstanceState);
+	     Intent intent = this.getIntent();
+             Set<String> set = intent.getCategories();
+             if(set == null){
+	       finish();
+	       return;
+	      }
 		
-		      for (String category : set) {
-			      	if(category == "android.intent.category.LAUNCHER"){
-					        flag = false;
-				      }
-		      }
+	     for (String category : set) {
+	     if(category == "android.intent.category.LAUNCHER"){
+	        flag = false;
+              }
+		 }
 		
-		      if(flag){
-			      finish();						
-		   }
+	     if(flag){
+                finish();						
+		 }
 	}
-	注：需要把上述onCreate中的代码复制到继承闪屏的Activity的onCreate方法中，且该Activity为游戏的LaunchActivity（游戏入口）。
 
-          @Override
-          public void onsplashStop() {
-             //闪屏结束后会调用该方法，CP可在该方法中跳转到游戏的主Activity
-                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-                startActivity(intent);
+        @Override
+        public void onsplashStop() {
+        //闪屏结束后会调用该方法，CP可在该方法中跳转到游戏的主Activity
+             Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+             startActivity(intent);
+             finish();
     }
 }
 ```
@@ -278,7 +280,7 @@ PlayerInfo封装的参数：
 ```
 ```java
     /***** order所需的参数：均通过set方法赋值 *****/
- // 必填参数
+   // 必填参数
 	private String productId; // 商品id。最大 16 字符。
 	// 必填参数
 	private String productName;// 商品名称
@@ -346,26 +348,13 @@ PlayerInfo封装的参数：
 CP可在回调成功或失败的方法中处理自己的逻辑
 
 ##### 3.1.10. 登出接口
-玩家退出游戏时，调用登出接口，在游戏的主Activity的onPause方法中调用，退出渠道账号及相关信息
+玩家退出游戏时，调用登出接口，在游戏的主Activity的onStop方法中调用，退出渠道账号及相关信息
 ```java
     /***** 调用示例 *****/
-    public class MainActivity extends Activity {
-
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-
-            // Some code
-
-            findViewById(R.id.button_logout).setOnClickListener(new OnClickListener() {
-
-                @Override
-                public void onClick(View view) {
-                    // 调用处
-                    YW.getInstance().logout();
-                }
-            });
-        }
+       @Override
+    protected void onStop () {
+      super.onStop();
+      YW.getInstance().logOut();
     }
 ```
 ```java
@@ -389,7 +378,8 @@ CP可在回调成功或失败的方法中处理自己的逻辑
     }
 ```
 
-##### 3.1.12. 另外，在游戏的主Activity的相应的生命周期方法中，还需要调用下面相应的方法，否则会导致某些渠道无法接入。示例：
+##### 3.1.12. 其他所需接口
+另外，在游戏的主Activity的相应的生命周期方法中，还需要调用下面相应的方法，否则会导致某些渠道无法接入。示例：
 ```java
    @Override
     protected void onRestart () {
