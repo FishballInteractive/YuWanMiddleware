@@ -89,7 +89,7 @@
 游戏需要创建一个Activity来继承中间件提供的FlashActivity，并把该Activity作为游戏的入口，重写FlashActivity的onsplashStop()方法,并在该方法中跳转到游戏的主Activity。 接入的示例代码：
 ```java
     /***** 调用示例 *****/
-    注：需要把下面onCreate中的代码复制到继承闪屏的Activity的onCreate方法中，且该Activity为游戏的LaunchActivity（游戏入口）。
+    
     public class SplashActivity extends FlashActivity {
        private boolean flag = true;
        @Override
