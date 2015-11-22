@@ -90,6 +90,28 @@
 ```java
     /***** 调用示例 *****/
     public class SplashActivity extends FlashActivity {
+       private boolean flag = true;
+       @Override
+       protected void onCreate(Bundle savedInstanceState) {
+		       super.onCreate(savedInstanceState);
+		       Intent intent = this.getIntent();
+		       Set<String> set = intent.getCategories();
+		       if(set == null){
+			        finish();
+		        	return;
+		       }
+		
+		      for (String category : set) {
+			      	if(category == "android.intent.category.LAUNCHER"){
+					        flag = false;
+				      }
+		      }
+		
+		      if(flag){
+			      finish();						
+		   }
+	}
+	注：需要把上述onCreate中的代码复制到继承闪屏的Activity的onCreate方法中，且该Activity为游戏的LaunchActivity（游戏入口）。
 
           @Override
           public void onsplashStop() {
@@ -101,7 +123,7 @@
 ```
 
 ##### 3.1.4. 中间件初始化
-调用初始化接口是调用其他接口的前置条件，否则调用其他接口时将抛出RuntimException。初始化接口建议在程序入口处调用，例如：Application或者入口Activity的onCreate。  
+调用初始化接口是调用其他接口的前置条件，否则调用其他接口时将抛出RuntimException。初始化接口建议在游戏的主Activity的onCreate方法中调用。  
 接入的示例代码如下：
 ```java
     /***** 调用示例 *****/
@@ -255,22 +277,32 @@ PlayerInfo封装的参数：
     }
 ```
 ```java
-    /***** 接口声明 *****/
-    public class YW {
-
-        /**
-         * 支付
-         *
-         * @param response 支付响应的回调。
-         *     response.onSuccess(Null aNull)，支付成功。
-         *     response.onFailure(String reason)，支付失败并携带失败的原因
-         */
-        public void pay(Order order, Response<Null> response);
-    }
+    /***** order所需的参数：均通过set方法赋值 *****/
+ // 必填参数
+	private String productId; // 商品id。最大 16 字符。
+	// 必填参数
+	private String productName;// 商品名称
+	private String productDesc;// 商品描述
+	// 必填参数
+	private String money; // 商品支付总金额。以分为单位，整型值，不能为小数
+	private String ratio; // 兑换比例
+	private String coinNum;// 用户金钱数量
+	// 必填参数
+	private String uid;// 游戏客户端从其服务端获取的uid
+	// 必填参数
+	private String GameName;// 游戏名称。最大16个中文字符
+	// 必填参数
+	private String roleId;// 应用内用户id，如角色名称。最大16个中文字符
+	// 必填参数
+	private String roleName;// 角色名称
+	private int roleLevel;// 角色等级
+	// 必填参数
+	private String orderID;// 订单id
+	private String extension; // 扩展字段
 ```
 
 ##### 3.1.8. 悬浮窗接入
-进入游戏后，调用悬浮窗显示接口，显示悬浮窗。建议在Activity的onResume方法中调用。示例：
+进入游戏后，调用悬浮窗显示接口，显示悬浮窗。在游戏的主Activity的onResume方法中调用。示例：
 ```java
    @Override
     protected void onResume() {
@@ -278,18 +310,17 @@ PlayerInfo封装的参数：
         YW.getInstance().showFloat(MainActivity.this);
     }
 ```
-游戏退出或需要隐藏悬浮窗时，调用悬浮穿隐藏接口，隐藏显示的悬浮窗。示例：
+隐藏悬浮窗时，调用悬浮穿隐藏接口。在游戏的主Activity的onPause方法中调用。示例：
 ```java
    @Override
-    protected void onStop() {
-        super.onStop();
+    protected void onPause() {
+        super.onPause();
         YW.getInstance().hideFloat(MainActivity.this);
         }
 ```
 ```java
    注意：
     在游戏退出时，一定要确保调用了悬浮窗隐藏接口，否则某些渠道会出现游戏退出了，悬浮窗依然还出现在手机桌面的情况。
-建议在Activity的onStop方法中调用。
 ```
 
 ##### 3.1.9. 账号切换
@@ -315,7 +346,7 @@ PlayerInfo封装的参数：
 CP可在回调成功或失败的方法中处理自己的逻辑
 
 ##### 3.1.10. 登出接口
-帐号登出
+玩家退出游戏时，调用登出接口，在游戏的主Activity的onPause方法中调用，退出渠道账号及相关信息
 ```java
     /***** 调用示例 *****/
     public class MainActivity extends Activity {
@@ -355,6 +386,29 @@ CP可在回调成功或失败的方法中处理自己的逻辑
     protected void onDestory () {
     super.onDestroy();
     YW.getInstance().shutdown (MainActivity.this);
+    }
+```
+
+##### 3.1.12. 另外，在游戏的主Activity的相应的生命周期方法中，还需要调用下面相应的方法，否则会导致某些渠道无法接入。示例：
+```java
+   @Override
+    protected void onRestart () {
+    super.onRestart();
+    YW.getInstance().onRestart();
+    }
+```
+```java
+   @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    super.onActivityResult(requestCode,resultCode,data);
+    YW.getInstance().onActivityResult(requestCode,resultCode,data);
+    }
+```
+```java
+   @Override
+    protected void onBackPressed() () {
+    super.onBackPressed();
+    YW.getInstance().onBackPressed();
     }
 ```
 
