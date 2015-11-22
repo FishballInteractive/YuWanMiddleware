@@ -104,8 +104,8 @@
 	      }
 		
 	     for (String category : set) {
-	     if(category == "android.intent.category.LAUNCHER"){
-	        flag = false;
+	       if(category == "android.intent.category.LAUNCHER"){
+	         flag = false;
               }
 		 }
 		
