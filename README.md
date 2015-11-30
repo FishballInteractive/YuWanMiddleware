@@ -98,13 +98,13 @@
 	     super.onCreate(savedInstanceState);
 	     Intent intent = this.getIntent();
 	     Set<String> set = intent.getCategories();
-	     if(set == null){
+	     if(null == set){
 	       finish();
 	       return;
 	      }
 		
 	     for (String category : set) {
-	       if(category == "android.intent.category.LAUNCHER"){
+	       if("android.intent.category.LAUNCHER".equals(category)){
 	         flag = false;
               }
 		 }
