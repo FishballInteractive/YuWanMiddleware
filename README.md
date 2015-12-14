@@ -155,7 +155,38 @@
     }
 ```
 
-##### 3.1.5. 登录接口
+##### 3.1.5. 设置游戏退出回调的监听
+调用设置游戏退出回调的监听接口，根据回调的内容，实现不同的退出游戏的逻辑。建议玩家在调用初始化接口后调用该接口。
+```java
+    /***** 调用示例 *****/
+    //注意：该接口与onBackPressed接口配合使用，游戏接入中务必调用onBackPressed接口，且不能拦截掉手机返回键的事件
+   YW.getInstance().setLogoutListener(new Response<String>() {
+			
+			@Override
+			public void onSuccess(String msg) {
+				if(msg.equals(YWConstant.LOG_OUT_SHOW_DIALOG)){
+					//实现弹出游戏退出弹窗，根据玩家选择退出或留在游戏中的逻辑
+					
+				}else if(msg.equals(YWConstant.LOG_OUT)){
+					//实现直接退出游戏的逻辑
+					
+				}else if(msg.equals(YWConstant.LOG_OUT_RESTART)){
+					//实现游戏重启的逻辑
+				}
+				
+			}
+			
+			@Override
+			public void onFailure(String msg) {
+				//渠道退出失败时会回调到这里，游戏实现自己的逻辑
+				
+			}
+		});
+
+    
+```
+
+##### 3.1.6. 登录接口
 帐号登录
 ```java
     /***** 调用示例 *****/
@@ -203,7 +234,7 @@
         public void login(Response<String> response);
     }
 ```
-##### 3.1.6. 提交玩家游戏相关信息
+##### 3.1.7. 提交玩家游戏相关信息
 在游戏玩家第一次进入游戏创建完成游戏角色时，CP需要提交游戏玩家相关信息。以后在游戏玩家登录完成时，CP都需要提交游戏玩家相关信息（玩家第一次注册登录，尚未创建游戏角色时不用提交）。示例：
 ```java
     PlayerInfo userExtraData = new PlayerInfo ();
@@ -241,7 +272,7 @@ PlayerInfo封装的参数：
     private String viplevel         //玩家的VIP等级   选填
 ```
 
-##### 3.1.7. 支付接口
+##### 3.1.8. 支付接口
 支付
 ```java
     /***** 调用示例 *****/
@@ -303,7 +334,7 @@ PlayerInfo封装的参数：
 	private String extension; // 扩展字段
 ```
 
-##### 3.1.8. 悬浮窗接入
+##### 3.1.9. 悬浮窗接入
 进入游戏后，调用悬浮窗显示接口，显示悬浮窗。在游戏的主Activity的onResume方法中调用。示例：
 ```java
    @Override
@@ -325,7 +356,7 @@ PlayerInfo封装的参数：
     在游戏退出时，一定要确保调用了悬浮窗隐藏接口，否则某些渠道会出现游戏退出了，悬浮窗依然还出现在手机桌面的情况。
 ```
 
-##### 3.1.9. 账号切换
+##### 3.1.10. 账号切换
 如果CP支持游戏内账户切换，提供游戏内账户切换功能时，需要调用switchAccount (Response respnse)。示例：
 ```java
    switch_btn.setOnClickListener(new OnClickListener() {
@@ -347,7 +378,7 @@ PlayerInfo封装的参数：
 ```
 CP可在回调成功或失败的方法中处理自己的逻辑
 
-##### 3.1.10. 登出接口
+##### 3.1.11. 登出接口
 玩家退出游戏时，调用登出接口，在游戏的主Activity的onStop方法中调用，退出渠道账号及相关信息
 ```java
     /***** 调用示例 *****/
@@ -368,7 +399,7 @@ CP可在回调成功或失败的方法中处理自己的逻辑
     }
 ```
 
-##### 3.1.11. 销毁SDK
+##### 3.1.12. 销毁SDK
 在游戏退出时调用销毁接口，以便释放资源。示例：
 ```java
    @Override
@@ -378,7 +409,7 @@ CP可在回调成功或失败的方法中处理自己的逻辑
     }
 ```
 
-##### 3.1.12. 其他所需接口
+##### 3.1.13. 其他所需接口
 另外，在游戏的主Activity的相应的生命周期方法中，还需要调用下面相应的方法，否则会导致某些渠道无法接入。示例：
 ```java
    @Override
