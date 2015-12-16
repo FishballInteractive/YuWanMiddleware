@@ -534,7 +534,7 @@ curl -X GET 'http://api.yuwan8.com/1.0/pay/user/profile?appid=13421341&token=17b
 | product_count | 商品数量 | int | 是 |
 | pay_time | 支付时间，时间戳 | long | 是 |
 | attach | 透传参数 | string | 是 |
-| result | 支付结果，成功：SUCCESS，失败：非SUCCESS，一般传FAILURE | string | 是 |
+| result_code | 支付结果，成功：SUCCESS，失败：非SUCCESS，一般传FAILURE | string | 是 |
 | sign | 参数签名 | string | 是 |
 
 * 请求示例
