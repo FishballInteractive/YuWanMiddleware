@@ -543,7 +543,7 @@ curl -X GET 'http://api.yuwan8.com/1.0/pay/user/profile?appid=13421341&token=17b
 假定appsecret=4d6121503e6c2c8157c98796cc4f598e<br>
 假定CP的请求地址是：http://cp.com/pay/nodify<br><br>
 
-curl -X GET 'http://cp.com/pay/nodify?appid=13421341&order_id=1370481703&cp_order_id=1948312434&uid=134124312&real_fee=200&trade_name=stone&product_count=1&pay_time=1440665340&attach=2af34&result=SUCCESS&sign=abb1d204741e93d376b0f17c6f0b5af5'
+curl -X GET 'http://cp.com/pay/nodify?appid=13421341&order_id=1370481703&cp_order_id=1948312434&uid=134124312&real_fee=200&trade_name=stone&product_count=1&pay_time=1440665340&attach=2af34&result_code=SUCCESS&sign=abb1d204741e93d376b0f17c6f0b5af5'
 </div>
 
 * 响应结果
