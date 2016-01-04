@@ -159,7 +159,7 @@
 调用设置游戏退出回调的监听接口，根据回调的内容，实现不同的退出游戏的逻辑。建议CP在调用初始化接口后调用该接口。
 ```java
     /***** 调用示例 *****/
-    //注意：该接口与onBackPressed接口配合使用，游戏接入中务必调用onBackPressed接口，且不能拦截掉手机返回键的事件
+    //注意：该接口与onBackPressed接口配合使用，游戏接入中务必调用onBackPressed接口。游戏的退出逻辑需要在下面的回调中去实现。即：设置退出的回调监听，玩家按手机Back时时，在游戏的响应方法中调用onBackPressed接口，在回调监听中根据回调的信息实现退出的逻辑。
    YW.getInstance().setLogoutListener(new Response<String>() {
 			
 			@Override
@@ -269,7 +269,6 @@ PlayerInfo封装的参数：
     private int serverID;          //服务器id   必填
     private String serverName;  //服务器区服     必填
     private int moneyNum;       //玩家金钱数量    选填
-    private String viplevel         //玩家的VIP等级   选填
 ```
 
 ##### 3.1.8. 支付接口
@@ -428,8 +427,7 @@ CP可在回调成功或失败的方法中处理自己的逻辑
 ```java
    @Override
     protected void onBackPressed() () {
-    super.onBackPressed();
-    //注意：需要先调用下面的方法再实现CP自己的逻辑
+    //注意：该方法与setLogoutListener方法配合使用，游戏需要在拦截手机Back事件的方法中调用改方法
     YW.getInstance().onBackPressed();
     }
 ```
