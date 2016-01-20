@@ -137,7 +137,7 @@
             setContentView(R.layout.acitvity_main);
 
             String appKey = ...  // appsecret向“鱼丸”申请。为保证安全，建议将appKey存到游戏服务器
-            YW.getInstance().init(this, appKey); // 调用处
+            YW.getInstance().initSDK(this, appKey); // 调用处
         }
     }
 ```
