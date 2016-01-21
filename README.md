@@ -330,9 +330,13 @@ PlayerInfo封装的参数：
 	private int roleLevel;// 角色等级
 	// 必填参数
 	private String orderID;// 订单id
+	//必填参数
+	private String sign;//参数
 	private String extension; // 扩展字段
 ```
-
+签名说明：
+参与签名的参数：productId，productName，money，uid，GameName，orderID
+签名规则：参见[3.2.1. HTTP请求参数签名](#3.2.1)
 ##### 3.1.9. 悬浮窗接入
 进入游戏后，调用悬浮窗显示接口，显示悬浮窗。在游戏的主Activity的onResume方法中调用。示例：
 ```java
@@ -444,7 +448,7 @@ CP可在回调成功或失败的方法中处理自己的逻辑
 工作流程中，跟CP相关的有两个HTTP接口：①登录验证接口、②支付通知接口。   
 具体的说明及接口定义见下述描述。
 
-##### 3.2.1. HTTP请求参数签名
+<h5 id="3.2.1">3.2.1. HTTP请求参数签名</h5>
 为验证请求的合法性，引入参数签名机制。参数签名的步骤如下：
 1. 对查询参数对（URL中“?”后的名值对（name-value）进行字典排序，数字由小到大，字母按字母表顺序；
 2. 非ASCII的查询参数值进行UTF-8 UrlEncode；
