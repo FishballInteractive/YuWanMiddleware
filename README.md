@@ -335,7 +335,7 @@ PlayerInfo封装的参数：
 	private String extension; // 扩展字段
 ```
 签名说明：
-参与签名的参数：productId，productName，money，uid，GameName，orderID
+参与签名的参数：productId，productName，money，uid，GameName，orderID</br>
 签名规则：参见[3.2.1. HTTP请求参数签名](#3.2.1)
 ##### 3.1.9. 悬浮窗接入
 进入游戏后，调用悬浮窗显示接口，显示悬浮窗。在游戏的主Activity的onResume方法中调用。示例：
