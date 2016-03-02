@@ -506,7 +506,8 @@ curl -X GET 'http://api.yuwan8.com/1.0/pay/user/profile?appid=13421341&token=17b
     "uid": "134124312",
     "name": "鱼丸",
     "avator": "http://xxxx.xxx.xxx/xxx.jpg",
-    "channel": "yw_360"  //渠道区分
+    "channel": "yw_360",  //渠道区分-英文标识
+    "channel_zh": "鱼丸_360"  //渠道区分-中文名
   }
 }
 
