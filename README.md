@@ -207,6 +207,7 @@
 
                         @Override
                         public void onSuccess(String token) {
+                            //注：token的有效期为十分钟
                             // Logic for login success.
                         }
 
