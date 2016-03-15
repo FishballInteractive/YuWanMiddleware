@@ -155,35 +155,16 @@
     }
 ```
 
-##### 3.1.5. 设置游戏退出回调的监听
-调用设置游戏退出回调的监听接口，根据回调的内容，实现不同的退出游戏的逻辑。建议CP在调用初始化接口后调用该接口。
+##### 3.1.5. onActivityCreate接口
+在接入过程中，需要在游戏的主Activity的生命周期方法onCreate中调用中间件的onActivityCreate接口。
 ```java
     /***** 调用示例 *****/
-    //注意：该接口与onBackPressed接口配合使用，游戏接入中务必调用onBackPressed接口。游戏的退出逻辑需要在下面的回调中去实现。即：设置退出的回调监听，玩家按手机Back时时，在游戏的响应方法中调用onBackPressed接口，在回调监听中根据回调的信息实现退出的逻辑。
-   YW.getInstance().setLogoutListener(new Response<String>() {
-			
-			@Override
-			public void onSuccess(String msg) {
-				if(msg.equals(YWConstant.LOG_OUT_SHOW_DIALOG)){
-					//实现弹出游戏退出弹窗，根据玩家选择退出或留在游戏中的逻辑
-					
-				}else if(msg.equals(YWConstant.LOG_OUT)){
-					//实现直接退出游戏的逻辑
-					
-				}else if(msg.equals(YWConstant.LOG_OUT_RESTART)){
-					//实现游戏重启的逻辑
-				}
-				
-			}
-			
-			@Override
-			public void onFailure(String msg) {
-				//渠道退出失败时会回调到这里，游戏实现自己的逻辑
-				
-			}
-		});
-
-    
+        @Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		YW.getInstance().onActivityCreate(this);
+		
+	}
 ```
 
 ##### 3.1.6. 登录接口
@@ -239,7 +220,7 @@
 在游戏玩家第一次进入游戏创建完成游戏角色时，CP需要提交游戏玩家相关信息。以后在游戏玩家登录完成时，CP都需要提交游戏玩家相关信息（玩家第一次注册登录，尚未创建游戏角色时不用提交）。示例：
 ```java
     PlayerInfo userExtraData = new PlayerInfo ();
-    YW.getInstance().subPlayerInfo (userExtraData, new Response<String>() {
+    YW.getInstance().submitPlayerInfo (userExtraData, new Response<String>() {
             @Override
             public void onFailure(String arg0) {
                 // TODO Auto-generated method stub
@@ -338,31 +319,25 @@ PlayerInfo封装的参数：
 签名说明：
 参与签名的参数：productId，productName，money，uid，GameName，orderID</br>
 签名规则：参见[3.2.1. HTTP请求参数签名](#3.2.1)
-##### 3.1.9. 悬浮窗接入
-进入游戏后，调用悬浮窗显示接口，显示悬浮窗。在游戏的主Activity的onResume方法中调用。示例：
+
+##### 3.1.5. getConfig接口
+该接口返回中间件当前支持的功能的信息，信息封装在一个Config对象中。
 ```java
-   @Override
-    protected void onResume() {
-        super.onResume();
-        YW.getInstance().showFloat(MainActivity.this);
-    }
-```
-隐藏悬浮窗时，调用悬浮穿隐藏接口。在游戏的主Activity的onPause方法中调用。示例：
-```java
-   @Override
-    protected void onPause() {
-        super.onPause();
-        YW.getInstance().hideFloat(MainActivity.this);
-        }
+ 	private boolean isSupportLogin;  //是否支持登录，true:支持，false:不支持
+	private boolean isSupportPay;   //支持支付，true:支持，false:不支持
+	private boolean isSupportFloat;  //是否有悬浮窗，true:支持，false:不支持
+	private boolean isSupportSwitchAccount;  //是否支持账号切换，true:支持，false:不支持
 ```
 ```java
-   注意：
-    在游戏退出时，一定要确保调用了悬浮窗隐藏接口，否则某些渠道会出现游戏退出了，悬浮窗依然还出现在手机桌面的情况。
+    /***** 调用示例 *****/
+    Config config = YW.getInstance().getConfig();
+    boolean isSupportSwitchAccount = config.isSupportSwitchAccount();  //可根据该值判断是否支持该功能
 ```
 
-##### 3.1.10. 账号切换
+##### 3.1.6. 账号切换
 如果CP支持游戏内账户切换，提供游戏内账户切换功能时，需要调用switchAccount (Response respnse)。示例：
 ```java
+   //注意：若游戏支持游戏内账号切换，在调用账号切换方法时，需要调用getConfig接口来获得渠道SDK是否支持账号切换，若不支持，需要隐藏相应的账号切换的按钮
    switch_btn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -382,59 +357,86 @@ PlayerInfo封装的参数：
 ```
 CP可在回调成功或失败的方法中处理自己的逻辑
 
-##### 3.1.11. 登出接口
-玩家退出游戏时，调用登出接口，在游戏的主Activity的onStop方法中调用，退出渠道账号及相关信息
+##### 3.1.7. 设置游戏退出的监听
+在初始化中间件后，需要设置游戏退出的回调监听。在相应的方法中实现游戏退出的逻辑
 ```java
     /***** 调用示例 *****/
-       @Override
-    protected void onStop () {
-      super.onStop();
-      YW.getInstance().logOut();
-    }
-```
-```java
-    /***** 接口声明 *****/
-    public class YW {
+  @Override
+	protected void onCreate(Bundle savedInstanceState) {
+	    super.onCreate(savedInstanceState);
+	    YW.getInstance().setExitStrategy(new YW.IExitStrategy() {
+			@Override
+			public void onShowExitDialog() {
+			  //CP需实现逻辑：弹出自己的退出提示框，根据玩家的选择退出或留在游戏	
+			}
 
-        /**
-         * 登出
-         */
-        public void logout();
-    }
-```
-
-##### 3.1.12. 销毁SDK
-在游戏退出时调用销毁接口，以便释放资源。示例：
-```java
-   @Override
-    protected void onDestory () {
-    super.onDestroy();
-    YW.getInstance().shutdown (MainActivity.this);
-    }
+			@Override
+			public void onExitDirectly() {
+			  //CP需实现逻辑：直接退出游戏
+			}
+		});
+	
+		
+	}
 ```
 
-##### 3.1.13. 其他所需接口
-另外，在游戏的主Activity的相应的生命周期方法中，还需要调用下面相应的方法，否则会导致某些渠道无法接入。示例：
+##### 3.1.8. 退出方法
+在游戏玩家触发退出事件时，CP需要调用该方法，游戏退出的逻辑放在退出回调的监听中来实现。
 ```java
-   @Override
-    protected void onRestart () {
-    super.onRestart();
-    YW.getInstance().onRestart();
-    }
+   /***** 调用示例 *****/
+   	//注：示例模拟玩家点击手机返回键的情况。若游戏拦截了手机的返回键事件，该方法应该在触发手机的Back键事件时调用，而不是放在Activity的onBackPressed方法中。具体情况需要CP根据自己的情况来灵活处理。需要保证要退出时调用了该方法，该方法与setExitStrategy方法配合使用，两者都需要保证被调用到
+ 	@Override
+	public void onBackPressed() {
+	  YW.getInstance().tryExit(this);
+
+	}
+```
+
+##### 3.1.9. 其他所需接口
+在接入游戏的Activity中，还需要在对应的生命周期方法中分别调用以下方法。所有方法均需调用
+```java
+    /***** 调用示例 *****/
+        @Override
+	protected void onResume() {
+	  super.onResume();
+	  YW.getInstance().onActivityResume();
+	}
 ```
 ```java
-   @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-    super.onActivityResult(requestCode,resultCode,data);
-    YW.getInstance().onActivityResult(requestCode,resultCode,data);
-    }
+  	@Override
+	protected void onPause() {
+	  super.onPause();
+	  YW.getInstance().onActivityPause();
+	}
 ```
 ```java
-   @Override
-    protected void onBackPressed() () {
-    //注意：该方法与setLogoutListener方法配合使用，游戏需要在拦截手机Back事件的方法中调用改方法
-    YW.getInstance().onBackPressed();
-    }
+ 	@Override
+	protected void onRestart() {
+	  super.onRestart();
+	  YW.getInstance().onActivityReStart();
+	}
+```
+
+```java
+	@Override
+	protected void onStop() {
+	  super.onStop();
+	  YW.getInstance().onActivityStop();
+	}
+```
+```java
+ 	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+	  super.onActivityResult(requestCode, resultCode, data);
+	  YW.getInstance().onActivityResult(requestCode, resultCode, data);
+	}
+```
+```java
+ 	@Override
+	protected void onDestroy() {
+	  super.onDestroy();
+	  YW.getInstance().onActivityDestroy();
+	}
 ```
 
 ##### 7. 混淆配置
