@@ -321,7 +321,7 @@ PlayerInfo封装的参数：
 签名规则：参见[3.2.1. HTTP请求参数签名](#3.2.1)
 
 ##### 3.1.5. getConfig接口
-该接口返回中间件当前支持的功能的信息，信息封装在一个Config对象中。
+该接口返回中间件当前所支持的功能的信息，信息封装在一个Config对象中。
 ```java
  	private boolean isSupportLogin;  //是否支持登录，true:支持，false:不支持
 	private boolean isSupportPay;   //支持支付，true:支持，false:不支持
@@ -331,7 +331,7 @@ PlayerInfo封装的参数：
 ```java
     /***** 调用示例 *****/
     Config config = YW.getInstance().getConfig();
-    boolean isSupportSwitchAccount = config.isSupportSwitchAccount();  //可根据该值判断是否支持该功能
+    boolean isSupportSwitchAccount = config.isSupportSwitchAccount();   //可根据该值判断是否支持该功能，从而做相应处理。游戏提供账号切换按钮时特别需要注意
 ```
 
 ##### 3.1.6. 账号切换
