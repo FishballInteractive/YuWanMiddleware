@@ -1,0 +1,5 @@
+1、Demo的AndroidManifest中的“YW_APPID”需替换为游戏的appid
+
+2、Demo的MainActivity中的mAppsecret、appkey需替换为游戏的appsecre和appkey
+
+3、满足上述条件后，Demo才能正常运行
