@@ -115,7 +115,7 @@
 	}
 
         @Override
-        public void onSplashStop() {
+        protected void onSplashStop() {
         //闪屏结束后会调用该方法，CP可在该方法中跳转到游戏的主Activity
              Intent intent = new Intent(LoginActivity.this,MainActivity.class);
              startActivity(intent);
