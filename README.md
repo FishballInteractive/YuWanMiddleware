@@ -315,6 +315,7 @@ PlayerInfo封装的参数：
 	//必填参数
 	private String sign;//参数
 	private String extension; // 扩展字段
+	private String notify_url; //支付回调参数，接入时测试使用
 ```
 签名说明：
 参与签名的参数：productId，productName，money，uid，GameName，orderID</br>
