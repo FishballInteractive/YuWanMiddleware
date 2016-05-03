@@ -449,8 +449,8 @@ CP可在回调成功或失败的方法中处理自己的逻辑
 ```java
  	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
-	    super.onConfigurationChanged(newConfig);
-	     YW.getInstance().onConfigurationChanged(newConfig);
+	  super.onConfigurationChanged(newConfig);
+	  YW.getInstance().onConfigurationChanged(newConfig);
 	}
 
 ```
