@@ -400,11 +400,19 @@ CP可在回调成功或失败的方法中处理自己的逻辑
 ```java
     /***** 调用示例 *****/
         @Override
+	protected void onCreate(Bundle savedInstanceState) {
+	 super.onCreate(savedInstanceState);
+	 YW.getInstance().wxLoginCallBack(getIntent(), MainActivity.this);
+	}
+```
+```java
+        @Override
 	protected void onResume() {
 	  super.onResume();
 	  YW.getInstance().onActivityResume();
 	}
 ```
+
 ```java
   	@Override
 	protected void onPause() {
@@ -418,6 +426,15 @@ CP可在回调成功或失败的方法中处理自己的逻辑
 	  super.onRestart();
 	  YW.getInstance().onActivityReStart();
 	}
+```
+
+```java
+	@Override
+	protected void onNewIntent(Intent intent) {
+	    super.onNewIntent(intent);
+	    YW.getInstance().wxLoginCallBack(intent, MainActivity.this);
+	}
+
 ```
 
 ```java
