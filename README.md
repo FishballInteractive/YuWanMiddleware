@@ -251,6 +251,9 @@ PlayerInfo封装的参数：
     private int serverID;          //服务器id   必填
     private String serverName;  //服务器区服     必填
     private int moneyNum;       //玩家金钱数量    选填
+    private String vip;    //玩家的VIP等级  必填
+    private long roleCTime;  //游戏角色创建时间 ——毫秒值   必填
+
 ```
 
 ##### 3.1.8. 支付接口
@@ -443,6 +446,15 @@ CP可在回调成功或失败的方法中处理自己的逻辑
 	  YW.getInstance().onActivityResult(requestCode, resultCode, data);
 	}
 ```
+```java
+ 	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+	    super.onConfigurationChanged(newConfig);
+	     YW.getInstance().onConfigurationChanged(newConfig);
+	}
+
+```
+
 ```java
  	@Override
 	protected void onDestroy() {
