@@ -156,14 +156,14 @@
 ```
 
 ##### 3.1.5. onActivityCreate接口
-在接入过程中，需要在游戏的主Activity的生命周期方法onCreate中调用中间件的onActivityCreate接口。
+在接入过程中，需要在游戏的主Activity的生命周期方法onCreate中调用中间件的onActivityCreate接口和wxLoginCallBack接口。
 ```java
     /***** 调用示例 *****/
         @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		YW.getInstance().onActivityCreate(this);
-		
+		YW.getInstance().wxLoginCallBack(getIntent(), this);
 	}
 ```
 
@@ -398,14 +398,7 @@ CP可在回调成功或失败的方法中处理自己的逻辑
 ##### 3.1.13. 其他所需接口
 在游戏的主Activity中，还需要在对应的生命周期方法中分别调用以下方法。所有方法均需调用
 ```java
-    /***** 调用示例 *****/
-        @Override
-	protected void onCreate(Bundle savedInstanceState) {
-	 super.onCreate(savedInstanceState);
-	 YW.getInstance().wxLoginCallBack(getIntent(), MainActivity.this);
-	}
-```
-```java
+   /***** 调用示例 *****/
         @Override
 	protected void onResume() {
 	  super.onResume();
@@ -432,9 +425,8 @@ CP可在回调成功或失败的方法中处理自己的逻辑
 	@Override
 	protected void onNewIntent(Intent intent) {
 	    super.onNewIntent(intent);
-	    YW.getInstance().wxLoginCallBack(intent, MainActivity.this);
+	    YW.getInstance().wxLoginCallBack(intent, this);
 	}
-
 ```
 
 ```java
