@@ -1,19 +1,17 @@
-ÖĞ¼ä¼ş°æ±¾¸üĞÂËµÃ÷£º
+ä¸­é—´ä»¶ç‰ˆæœ¬æ›´æ–°è¯´æ˜ï¼š
 
-
-
-2.0.2°æ±¾¸üĞÂ
+2.0.2ç‰ˆæœ¬æ›´æ–°
 ==============================================================2.0.2==============================================================
  
- 1¡¢ÓÎÏ·µÄÖ÷ActivityµÄÉúÃüÖÜÆÚ·½·¨onCreateÖĞÔö¼ÓÁËwxLoginCallBackµÄ·½·¨µ÷ÓÃ¡£Ê¾Àı:
+ 1ã€æ¸¸æˆçš„ä¸»Activityçš„ç”Ÿå‘½å‘¨æœŸæ–¹æ³•onCreateä¸­å¢åŠ äº†wxLoginCallBackçš„æ–¹æ³•è°ƒç”¨ã€‚ç¤ºä¾‹:
 
       protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         YW.getInstance().onActivityCreate(this);
-        YW.getInstance().wxLoginCallBack(getIntent(), this);//2.0.2°æ±¾ĞÂÔö
+        YW.getInstance().wxLoginCallBack(getIntent(), this);//2.0.2ç‰ˆæœ¬æ–°å¢
     }
 
-  2¡¢ÓÎÏ·µÄÖ÷ActivityµÄonNewIntentĞèÒªµ÷ÓÃÖĞ¼ä¼şµÄwxLoginCallBack·½·¨¡£Ê¾Àı£º
+  2ã€æ¸¸æˆçš„ä¸»Activityçš„onNewIntentéœ€è¦è°ƒç”¨ä¸­é—´ä»¶çš„wxLoginCallBackæ–¹æ³•ã€‚ç¤ºä¾‹ï¼š
 	
      @Override
      protected void onNewIntent(Intent intent) {
@@ -21,7 +19,7 @@
         YW.getInstance().wxLoginCallBack(intent, this);
     }
 
-  3¡¢ÓÎÏ·µÄÖ÷ActivityµÄonConfigurationChanged·½·¨ĞèÒªµ÷ÓÃÖĞ¼ä¼şµÄonConfigurationChanged·½·¨¡£Ê¾Àı£º
+  3ã€æ¸¸æˆçš„ä¸»Activityçš„onConfigurationChangedæ–¹æ³•éœ€è¦è°ƒç”¨ä¸­é—´ä»¶çš„onConfigurationChangedæ–¹æ³•ã€‚ç¤ºä¾‹ï¼š
 
      @Override
      public void onConfigurationChanged(Configuration newConfig) {
@@ -29,6 +27,6 @@
       YW.getInstance().onConfigurationChanged(newConfig);
     }
 
-  4¡¢Íæ¼ÒÓÎÏ·ĞÅÏ¢Ôö¼ÓĞÂµÄ×Ö¶Î£ºvip£¨Íæ¼ÒVIPµÈ¼¶£©¡¢roleCTime£¨ÓÎÏ·½ÇÉ«´´½¨Ê±¼ä£©£¬dataType£¨ĞÅÏ¢ÀàĞÍ£©±ØĞëÑÏ¸ñÇø·ÖÊÇTYPE_ENTER_GAM£¨µÇÂ¼½øÈëÓÎÏ·£©¡¢TYPE_CREATE_ROLE£¨´´½¨½ÇÉ«£©ºÍTYPE_LEVEL_UP£¨µÈ¼¶ÌáÉı£©£¬³ıÔÚ´´½¨ÓÎÏ·½ÇÉ«ºÍ½øÈëÓÎÏ·ĞèÒªÌá½»Íæ¼ÒÓÎÏ·ĞÅÏ¢Íâ£¬ÔÙÓÎÏ·Éı¼¶Ê±Ò²ĞèÒªÌá½»ÓÎÏ·ĞÅÏ¢¡£
+  4ã€ç©å®¶æ¸¸æˆä¿¡æ¯å¢åŠ æ–°çš„å­—æ®µï¼švipï¼ˆç©å®¶VIPç­‰çº§ï¼‰ã€roleCTimeï¼ˆæ¸¸æˆè§’è‰²åˆ›å»ºæ—¶é—´ï¼‰ï¼ŒdataTypeï¼ˆä¿¡æ¯ç±»å‹ï¼‰å¿…é¡»ä¸¥æ ¼åŒºåˆ†æ˜¯TYPE_ENTER_GAMï¼ˆç™»å½•è¿›å…¥æ¸¸æˆï¼‰ã€TYPE_CREATE_ROLEï¼ˆåˆ›å»ºè§’è‰²ï¼‰å’ŒTYPE_LEVEL_UPï¼ˆç­‰çº§æå‡ï¼‰ï¼Œé™¤åœ¨åˆ›å»ºæ¸¸æˆè§’è‰²å’Œè¿›å…¥æ¸¸æˆéœ€è¦æäº¤ç©å®¶æ¸¸æˆä¿¡æ¯å¤–ï¼Œå†æ¸¸æˆå‡çº§æ—¶ä¹Ÿéœ€è¦æäº¤æ¸¸æˆä¿¡æ¯ã€‚
 
 ==============================================================2.0.2==============================================================
