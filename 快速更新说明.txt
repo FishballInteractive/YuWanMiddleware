@@ -1,0 +1,34 @@
+中间件版本更新说明：
+
+
+
+2.0.2版本更新
+==============================================================2.0.2==============================================================
+ 
+ 1、游戏的主Activity的生命周期方法onCreate中增加了wxLoginCallBack的方法调用。示例:
+
+      protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        YW.getInstance().onActivityCreate(this);
+        YW.getInstance().wxLoginCallBack(getIntent(), this);//2.0.2版本新增
+    }
+
+  2、游戏的主Activity的onNewIntent需要调用中间件的wxLoginCallBack方法。示例：
+	
+     @Override
+     protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        YW.getInstance().wxLoginCallBack(intent, this);
+    }
+
+  3、游戏的主Activity的onConfigurationChanged方法需要调用中间件的onConfigurationChanged方法。示例：
+
+     @Override
+     public void onConfigurationChanged(Configuration newConfig) {
+      super.onConfigurationChanged(newConfig);
+      YW.getInstance().onConfigurationChanged(newConfig);
+    }
+
+  4、玩家游戏信息增加新的字段：vip（玩家VIP等级）、roleCTime（游戏角色创建时间），dataType（信息类型）必须严格区分是TYPE_ENTER_GAM（登录进入游戏）、TYPE_CREATE_ROLE（创建角色）和TYPE_LEVEL_UP（等级提升），除在创建游戏角色和进入游戏需要提交玩家游戏信息外，再游戏升级时也需要提交游戏信息。
+
+==============================================================2.0.2==============================================================
