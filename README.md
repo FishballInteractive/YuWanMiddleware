@@ -305,7 +305,7 @@ PlayerInfo封装的参数：
 	private String ratio; // 兑换比例
 	private String coinNum;// 用户金钱数量
 	// 必填参数
-	private String uid;// 登录验证时游戏服务端从中间价服务端获取到的uid
+	private String uid;// 登录验证时游戏服务端从中间件服务端获取到的uid
 	// 必填参数
 	private String GameName;// 游戏名称。最大16个中文字符
 	// 必填参数
