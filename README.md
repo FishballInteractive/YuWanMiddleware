@@ -217,7 +217,7 @@
     }
 ```
 ##### 3.1.7. 提交玩家游戏相关信息
-在游戏玩家第一次进入游戏创建完成游戏角色时，CP需要提交游戏玩家相关信息。以后在游戏玩家登录完成时，CP都需要提交游戏玩家相关信息（玩家第一次注册登录，尚未创建游戏角色时不用提交）。示例：
+在游戏玩家第一次进入游戏创建完游戏角色时，CP需要提交游戏玩家相关信息。以后在游戏玩家登录完成时，CP都需要提交游戏玩家相关信息（玩家第一次注册登录，尚未创建游戏角色时不用提交）。游戏中玩家等级升级时，也需要提交游戏信息。示例：
 ```java
     PlayerInfo userExtraData = new PlayerInfo ();
     YW.getInstance().submitPlayerInfo (userExtraData, new Response<String>() {
@@ -414,6 +414,13 @@ CP可在回调成功或失败的方法中处理自己的逻辑
 	protected void onPause() {
 	  super.onPause();
 	  YW.getInstance().onActivityPause();
+	}
+```
+```java
+  	@Override
+	protected void onStart() {
+	  super.onStart();
+          YW.getInstance.onActivityStart();
 	}
 ```
 ```java
