@@ -257,7 +257,7 @@ PlayerInfo封装的参数：
 ```
 
 ##### 3.1.8. 支付接口
-支付
+支付（特别需要注意发起支付时签名的生成，否则发起支付会失败）
 ```java
     /***** 调用示例 *****/
     public class MainActivity extends Activity {
