@@ -136,7 +136,7 @@
             super.onCreate(savedInstanceState);
             setContentView(R.layout.acitvity_main);
 
-            String appKey = ...  // appKey向“鱼丸”申请。为保证安全，建议将appKey存到游戏服务器
+            String appKey = ...  // appKey向“鱼丸”申请。
             YW.getInstance().initSDK(this, appKey); // 调用处
         }
     }
