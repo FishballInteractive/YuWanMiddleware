@@ -37,7 +37,7 @@
         <!--AppId由鱼丸工作人员分配-->
         <meta-data
             android:name="YW_APPID"
-            android:value="54866deefd98c55332000cc7" />
+            android:value="10000000" />
         <!--渠道“占位”标签，供渠道打包工具替换实际的分发渠道号-->
         <meta-data
             android:name="YW_CHANNEL"
