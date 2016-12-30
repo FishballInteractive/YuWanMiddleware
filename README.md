@@ -33,6 +33,8 @@
 
 ```xml
     <application>
+    	 <!--注：游戏中的Activity及相关的配置需要使用完整的包名路劲-->
+    
         <!--在application标签内插入YW_APPID、YW_CHANNEL两个meta-data标签-->
         <!--AppId由鱼丸工作人员分配-->
         <meta-data
