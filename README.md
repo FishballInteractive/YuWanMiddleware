@@ -44,6 +44,10 @@
         <meta-data
             android:name="YW_CHANNEL"
             android:value="yuwan" />
+	  <!--配置游戏主Activity的名称，完整的包名路径名称-->   
+	 <meta-data
+            android:name="GAME_MAIN_ACTIVITY"
+            android:value="com.yuwan.MainActivity" />
     </application>
 ```
 
