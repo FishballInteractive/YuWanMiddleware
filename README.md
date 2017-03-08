@@ -258,7 +258,7 @@ PlayerInfo封装的参数：
     private String serverName;  //服务器区服     必填
     private int moneyNum;       //玩家金钱数量    选填
     private String vip;    //玩家的VIP等级  必填
-    private long roleCTime;  //游戏角色创建时间 ——毫秒值(10位数)   必填
+    private long roleCTime;  //游戏角色创建时间 ——精确到秒  必填
 
 ```
 
