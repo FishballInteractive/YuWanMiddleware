@@ -320,8 +320,7 @@ PlayerInfo封装的参数：
 	private String roleName;// 角色名称
 	private int roleLevel;// 角色等级
 	// 必填参数
-	private String orderID;// 订单id
-	//必填参数
+	private String orderID;// 订单id,最长32位 //必填参数
 	private String sign;//参数签名，规则见下方说明
 	private String extension; // 扩展字段
 	private String notify_url; //支付回调参数，接入时测试使用
