@@ -336,6 +336,7 @@ PlayerInfo封装的参数：
 	private boolean isSupportPay;   //支持支付，true:支持，false:不支持
 	private boolean isSupportFloat;  //是否有悬浮窗，true:支持，false:不支持
 	private boolean isSupportSwitchAccount;  //是否支持账号切换，true:支持，false:不支持
+	 private boolean isSupportLogout;  //是否支持游戏内注销账号，true:支持，false:不支持
 ```
 ```java
     /***** 调用示例 *****/
@@ -389,7 +390,14 @@ CP可在回调成功或失败的方法中处理自己的逻辑
 	}
 ```
 
-##### 3.1.12. 退出方法
+##### 3.1.12. 注销账号
+游戏内提供注销功能时，玩家点击注销按钮是，调用次方法（注：如果游戏内提供注销功能，一定要配合getConfig方法使用，只有getConfig的isSupportLogout字段值为true时，游戏内才显示注销功能，否则屏蔽该功能，目前应用宝渠道需要游戏提供该功能）
+```java
+   /***** 调用示例 *****/
+   	YW.getInstance().logout();     
+```
+
+##### 3.1.13. 退出方法
 在游戏玩家触发退出事件时，CP需要调用该方法，游戏退出的逻辑放在退出回调的监听中来实现。
 ```java
    /***** 调用示例 *****/
@@ -403,7 +411,7 @@ CP可在回调成功或失败的方法中处理自己的逻辑
 	}
 ```
 
-##### 3.1.13. 其他所需接口
+##### 3.1.14. 其他所需接口
 在游戏的主Activity中，还需要在对应的生命周期方法中分别调用以下方法。所有方法均需调用
 ```java
    /***** 调用示例 *****/
