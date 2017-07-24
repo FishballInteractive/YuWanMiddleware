@@ -92,7 +92,7 @@
 ```
 
 ##### 3.1.3. 继承闪屏的Activity
-游戏需要创建一个Activity来继承中间件提供的FlashActivity，并把该Activity作为游戏的入口，重写FlashActivity的onsplashStop()方法,并在该方法中跳转到游戏的主Activity。 接入的示例代码：
+游戏需要创建一个Activity来继承中间件提供的SplashActivity，并把该Activity作为游戏的入口，重写SplashActivity的onsplashStop()方法,并在该方法中跳转到游戏的主Activity。 接入的示例代码：
 ```java
     /***** 调用示例 *****/
     
